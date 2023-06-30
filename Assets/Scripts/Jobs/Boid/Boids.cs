@@ -10,25 +10,6 @@ using Random = UnityEngine.Random;
 
 namespace Jobs.Boid
 {
-    public struct ColorJob : IJobParallelFor
-    {
-        public NativeArray<Vector3> positions;
-        public NativeArray<Color> colors;
-
-        public void Execute(int index)
-        {
-            Vector3 position = positions[index];
-
-            // Нормализация значений позиции в диапазоне [0, 1]
-            float normalizedX = Mathf.InverseLerp(-1f, 1f, position.x);
-            float normalizedY = Mathf.InverseLerp(-1f, 1f, position.y);
-            float normalizedZ = Mathf.InverseLerp(-1f, 1f, position.z);
-
-            // Преобразование нормализованных значений в компоненты цвета RGB
-            Color color = new Color(normalizedX, normalizedY, normalizedZ);
-            colors[index] = color;
-        }
-    }
 
     public class Boids : MonoBehaviour
     {
